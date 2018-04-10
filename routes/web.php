@@ -14,4 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('restaurants', 'RestaurantsController',['only' => ['index','show']]);
+
+
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'web', 'namespace' => 'Admin'], function () {
+    Route::resource('restaurants', 'RestaurantsController');
+});
+Route::resource('restaurants', 'RestaurantsController', ['only' => ['index','show']]);
