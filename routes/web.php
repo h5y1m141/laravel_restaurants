@@ -11,12 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'web', 'namespace' => 'Admin'], function () {
-    Route::resource('restaurants', 'RestaurantsController');
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::resource('restaurants', 'RestaurantsController')
+        ->middleware('auth');
 });
 Route::resource('restaurants', 'RestaurantsController', ['only' => ['index','show']]);
+
+Auth::routes();
