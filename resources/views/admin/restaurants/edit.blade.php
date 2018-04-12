@@ -1,11 +1,11 @@
 <div class="container">
-  <h1>店舗作成</h1>
-  <form action="{{ url('/admin/restaurants') }}" method="post">
+  <h1>店舗編集</h1>
+  <form action="{{ url('/admin/restaurants/'.$restaurant->id) }}" method="POST">
     @csrf
-    @method('POST')
+    @method('PUT')
     @component('admin.components.form', ['restaurant' => $restaurant])
     @slot('submit')
-    登録する
+    更新する
     @endslot
     @endcomponent
   </form>
