@@ -24,7 +24,8 @@ class RestaurantsController extends Controller
      */
     public function create()
     {
-        return view('admin.restaurants.create');
+        $restaurant = new Restaurant;
+        return view('admin.restaurants.create', ['restaurant' => $restaurant]);
     }
 
     /**
@@ -35,13 +36,11 @@ class RestaurantsController extends Controller
      */
     public function store(Request $request)
     {
-        eval(\Psy\sh());
         $restaurant = new Restaurant;
         $restaurant->name = $request->name;
         $restaurant->address = $request->address;
         $restaurant->save();
-        $restaurants = Restaurant::all();
-        return view('admin.restaurants.index', ['restaurants' => $restaurants]);
+        return redirect('/admin/restaurants');
     }
 
     /**
@@ -53,7 +52,8 @@ class RestaurantsController extends Controller
 
     public function edit($id)
     {
-        //
+        $restaurant = Restaurant::find($id);
+        return view('admin.restaurants.edit', ['restaurant' => $restaurant]);
     }
     /**
      * Update the specified resource in storage.
@@ -64,7 +64,11 @@ class RestaurantsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $restaurant = Restaurant::find($id);
+        $restaurant->name = $request->name;
+        $restaurant->address = $request->address;
+        $restaurant->save();
+        return redirect('/admin/restaurants');
     }
 
     /**
