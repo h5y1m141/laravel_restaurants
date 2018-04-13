@@ -20,6 +20,11 @@
 @section('content')
   @if (Auth::check())
     <div>
+      <a href="/admin/restaurants/create">
+        <button class="btn btn-primary">新規作成</button>
+      </a>
+    </div>
+    <div>
       <h2>
         店舗一覧
       </h2>
