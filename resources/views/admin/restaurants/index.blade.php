@@ -31,6 +31,7 @@
             <th>住所</th>
             <th>作成日</th>
             <th>編集</th>
+            <th>削除</th>
           </tr>
         </thead>
         @foreach ($restaurants as $restaurant)
@@ -43,6 +44,13 @@
               <a href="/admin/restaurants/{{ $restaurant->id }}/edit">
                 <button class="btn btn-info">編集する</button>
               </a>
+            </td>
+            <td>
+              <form action="/admin/restaurants/{{ $restaurant->id }}" method="POST">
+                {{ csrf_field() }}
+                @method('DELETE')
+                <button class="btn btn-danger">削除</button>
+              </form>
             </td>
           </tr>
         @endforeach

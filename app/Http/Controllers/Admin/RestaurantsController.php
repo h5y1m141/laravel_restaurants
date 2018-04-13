@@ -79,6 +79,8 @@ class RestaurantsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $restaurant = Restaurant::find($id);
+        $restaurant->delete();
+        return redirect('/admin/restaurants');
     }
 }
