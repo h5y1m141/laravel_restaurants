@@ -39,6 +39,10 @@ class RestaurantsController extends Controller
         $restaurant = new Restaurant;
         $restaurant->name = $request->name;
         $restaurant->address = $request->address;
+        if ($request->picture_filename)
+        {
+            $restaurant->picture_filename = $this->store_picture($request->picture_filename);
+        }
         $restaurant->save();
         return redirect('/admin/restaurants');
     }
@@ -67,6 +71,10 @@ class RestaurantsController extends Controller
         $restaurant = Restaurant::find($id);
         $restaurant->name = $request->name;
         $restaurant->address = $request->address;
+        if ($request->picture_filename)
+        {
+            $restaurant->picture_filename = $this->store_picture($request->picture_filename);
+        }
         $restaurant->save();
         return redirect('/admin/restaurants');
     }
@@ -82,5 +90,12 @@ class RestaurantsController extends Controller
         $restaurant = Restaurant::find($id);
         $restaurant->delete();
         return redirect('/admin/restaurants');
+    }
+    private function store_picture($file_name)
+    {
+        $file = $file_name;
+        $name = $file->getClientOriginalName();
+        $file->move('./storage/', $name);
+        return $name;
     }
 }
