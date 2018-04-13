@@ -33,6 +33,7 @@
           <tr>
             <th>id</th>
             <th>店舗名</th>
+            <th>画像</th>
             <th>住所</th>
             <th>作成日</th>
             <th>編集</th>
@@ -42,6 +43,11 @@
         @foreach ($restaurants as $restaurant)
           <tr>
             <td>{{ $restaurant->id }}</td>
+            <td>
+              @if ($restaurant->picture_filename)
+                <img width="100" height="50" alt="店舗画像" src="{{ asset('storage/' . $restaurant->picture_filename) }}"/>
+              @endif
+            </td>
             <td>{{ $restaurant->name }}</td>
             <td>{{ $restaurant->address }}</td>
             <td>{{ $restaurant->created_at }}</td>
