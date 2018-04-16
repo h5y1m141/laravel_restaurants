@@ -15,7 +15,8 @@ class RestaurantsController extends Controller
     public function index()
     {
         // $items = DB::table('restaurants')->get();
-        $restaurants = Restaurant::all();
+        $restaurants = Restaurant::orderBy('id', 'asc')
+                     ->simplePaginate(5);
         return view('restaurants.index', ['restaurants' => $restaurants]);
     }
 
