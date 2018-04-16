@@ -11,17 +11,35 @@
     <h2>
       店舗一覧
     </h2>
-    <p>
-      <example-component />
-    </p>
     <table class="table">
-      @foreach ($restaurants as $restaurant)
-        <tr>
-          <td>{{ $restaurant->id }}</td>
-          <td>{{ $restaurant->name }}</td>
-          <td>{{ $restaurant->created_at }}</td>
+      <thead>
+        <tr class="row m-0">
+          <th class="col-2">画像</th>
+          <th class="col-4">店舗名</th>
+          <th class="col-4">住所</th>
+          <th class="col-2">詳細</th>
         </tr>
-      @endforeach
+      </thead>
+      <tbody>
+        @foreach ($restaurants as $restaurant)
+          <tr class="row m-0">
+            <td class="col-2">
+              @component('restaurants.components.restaurant_picture', ['restaurant' => $restaurant])
+              @endcomponent
+            </td>
+            <td class="col-4">
+              {{ $restaurant->name }}
+            </td>
+            <td class="col-4">
+              {{ $restaurant->address }}
+            </td>
+            <td class="col-2">
+              <button class="btn btn-info">詳細</button>
+            </td>
+          </tr>
+        @endforeach
+      </tbody>
     </table>
+    {{ $restaurants->links() }}
   </div>
 @endsection
