@@ -39,6 +39,7 @@ class RestaurantsController extends Controller
      */
     public function show($id)
     {
-        //
+        $restaurant = Restaurant::find($id);
+        return view('restaurants.show', ['restaurant' => $restaurant]);
     }
 }

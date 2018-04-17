@@ -34,7 +34,9 @@
               {{ $restaurant->address }}
             </td>
             <td class="col-2">
-              <button class="btn btn-info">詳細</button>
+              <a href="/restaurants/{{ $restaurant->id }}">
+                <button class="btn btn-info">詳細</button>
+              </a>
             </td>
           </tr>
         @endforeach
